@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lostman Documentation // The Found Man</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        scroll: {
+                            950: '#0c0a09',
+                            900: '#171412',
+                            800: '#231f1c',
+                            700: '#38302b',
+                            600: '#574b43',
+                            gold: '#d4af37',
+                            goldLight: '#f3e5ab',
+                            parchment: '#eaddca'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Cinzel', 'Georgia', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Courier New', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts for Cinzel & Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0c0a09;
+            color: #d4d4d4;
+        }
+        .font-cinzel {
+            font-family: 'Cinzel', serif;
+        }
+        .scroll-texture {
+            background-color: #171412;
+            background-image: radial-gradient(circle at 50% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 60%),
+                              linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(23,20,18,0.95));
+            box-shadow: inset 0 0 100px rgba(0,0,0,0.8), 0 20px 40px rgba(0,0,0,0.6);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        .gold-glow {
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+        }
+        .gold-border {
+            border-image: linear-gradient(to bottom, #d4af37, #574b43, transparent) 1;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0c0a09;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #38302b;
+            border-radius: 4px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #d4af37;
+        }
+        .fade-in {
+            animation: fadeIn 0.8s ease-in-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col relative overflow-x-hidden selection:bg-amber-500 selection:text-black">
+
+    <header class="sticky top-0 z-50 bg-scroll-950/90 backdrop-blur-md border-b border-amber-500/20 px-6 py-4 flex items-center justify-between">
+        <div class="flex items-center space-x-3">
+            <div class="w-3 h-3 rounded-full bg-amber-500 animate-pulse"></div>
+            <span class="font-cinzel text-sm md:text-base font-bold tracking-widest text-amber-400 gold-glow">LOSTMAN DOCUMENTATION</span>
+        </div>
+        <div class="flex items-center space-x-4">
+            <div class="text-xs font-mono text-amber-500/70 tracking-wider">
+                STATUS: <span class="text-amber-400">THE SCROLL UNROLLED</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-1 max-w-4xl w-full mx-auto px-4 py-12 md:py-20 flex flex-col space-y-16">
+        
+        <!-- Hero Section -->
+        <section class="text-center space-y-8 py-8 relative">
+            <div class="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none">
+                <div class="w-96 h-96 rounded-full border-2 border-amber-400 animate-ping"></div>
+            </div>
+            <div class="inline-block px-4 py-1.5 rounded-full bg-amber-950/50 border border-amber-500/30 text-amber-400 font-cinzel text-xs tracking-widest uppercase">
+                Ancient Scroll Archive // Vol. I
+            </div>
+            <h1 class="text-4xl md:text-7xl font-black tracking-tight font-cinzel text-amber-100 gold-glow leading-tight">
+                THE STORY OF <span class="text-amber-400">LOSTMAN</span>
+            </h1>
+            <p class="font-cinzel italic text-amber-200/70 text-lg md:text-xl max-w-2xl mx-auto">
+                “Everyone gets lost. Not everyone finds the way back.”
+            </p>
+            <div class="pt-4 flex flex-wrap justify-center gap-4">
+                <button onclick="scrollToScroll()" class="px-8 py-3.5 bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-scroll-950 font-bold rounded shadow-lg shadow-amber-500/20 transition transform hover:-translate-y-0.5 font-cinzel tracking-wider text-sm">
+                    UNROLL THE SCROLL
+                </button>
+                <button onclick="scrollToPhilosophy()" class="px-8 py-3.5 bg-scroll-800 hover:bg-scroll-700 text-amber-300 font-semibold rounded border border-amber-500/30 transition font-cinzel tracking-wider text-sm">
+                    EXPLORE THE LOGO SYMBOLISM
+                </button>
+            </div>
+        </section>
+
+        <div id="scroll-archive" class="scroll-texture rounded-xl p-6 md:p-14 relative overflow-hidden space-y-16 border border-amber-500/20">
+            <!-- Decorative scroll corners -->
+            <div class="absolute top-3 left-3 w-6 h-6 border-t-2 border-l-2 border-amber-500/40"></div>
+            <div class="absolute top-3 right-3 w-6 h-6 border-t-2 border-r-2 border-amber-500/40"></div>
+            <div class="absolute bottom-3 left-3 w-6 h-6 border-b-2 border-l-2 border-amber-500/40"></div>
+            <div class="absolute bottom-3 right-3 w-6 h-6 border-b-2 border-r-2 border-amber-500/40"></div>
+
+            <!-- Chapter Navigation Selector Bar -->
+            <div class="sticky top-20 z-30 bg-scroll-950/90 backdrop-blur border border-amber-500/30 p-3 rounded-lg flex items-center justify-between overflow-x-auto gap-2 shadow-xl">
+                <span class="font-cinzel text-xs text-amber-400 font-bold uppercase whitespace-nowrap px-2">Jump to Chapter:</span>
+                <div class="flex items-center gap-1 overflow-x-auto py-1" id="chapter-nav-buttons">
+                    <!-- Dynamic navigation buttons populated via JS -->
+                </div>
+            </div>
+
+            <!-- Story Chapters Content Container -->
+            <div id="story-chapters-container" class="space-y-20">
+                <!-- Chapters will be rendered here dynamically -->
+            </div>
+        </div>
+
+        <section id="philosophy-section" class="scroll-texture rounded-xl p-8 md:p-12 space-y-8 border border-amber-500/30">
+            <div class="text-center space-y-3">
+                <span class="text-amber-500 font-cinzel text-xs tracking-widest uppercase">The Symbolic Language</span>
+                <h2 class="text-3xl md:text-4xl font-cinzel font-bold text-amber-100 gold-glow">WHAT THE LOGO MEANS</h2>
+                <p class="text-amber-200/70 italic text-sm md:text-base font-cinzel">
+                    “We are all lost somewhere between who we were, who we are, and who we're becoming.”
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
+                <div class="p-5 bg-scroll-900/80 border border-amber-500/20 rounded-lg flex items-start space-x-4">
+                    <span class="text-3xl">👤</span>
+                    <div>
+                        <h3 class="font-cinzel font-bold text-amber-300">Faceless Man</h3>
+                        <p class="text-sm text-neutral-400 mt-1">Searching for identity. He has stopped allowing the world to define who he is.</p>
+                    </div>
+                </div>
+
+                <div class="p-5 bg-scroll-900/80 border border-amber-500/20 rounded-lg flex items-start space-x-4">
+                    <span class="text-3xl">🪐</span>
+                    <div>
+                        <h3 class="font-cinzel font-bold text-amber-300">Ring Around His Head</h3>
+                        <p class="text-sm text-neutral-400 mt-1">Thoughts, time, and life journey. Everything revolves around consciousness.</p>
+                    </div>
+                </div>
+
+                <div class="p-5 bg-scroll-900/80 border border-amber-500/20 rounded-lg flex items-start space-x-4">
+                    <span class="text-3xl">🌑</span>
+                    <div>
+                        <h3 class="font-cinzel font-bold text-amber-300">Black</h3>
+                        <p class="text-sm text-neutral-400 mt-1">Darkness, confusion, isolation, and the depth of the unknown.</p>
+                    </div>
+                </div>
+
+                <div class="p-5 bg-scroll-900/80 border border-amber-500/20 rounded-lg flex items-start space-x-4">
+                    <span class="text-3xl">✨</span>
+                    <div>
+                        <h3 class="font-cinzel font-bold text-amber-300">Gold</h3>
+                        <p class="text-sm text-neutral-400 mt-1">Wisdom gained through suffering. The unbreakable essence forged in darkness.</p>
+                    </div>
+                </div>
+
+                <div class="p-5 bg-scroll-900/80 border border-amber-500/20 rounded-lg flex items-start space-x-4">
+                    <span class="text-3xl">💥</span>
+                    <div>
+                        <h3 class="font-cinzel font-bold text-amber-300">Broken Body</h3>
+                        <p class="text-sm text-neutral-400 mt-1">Old identity falling apart. The person he thought he had to be is dying.</p>
+                    </div>
+                </div>
+
+                <div class="p-5 bg-scroll-900/80 border border-amber-500/20 rounded-lg flex items-start space-x-4">
+                    <span class="text-3xl">🌱</span>
+                    <div>
+                        <h3 class="font-cinzel font-bold text-amber-300">Root-like Legs</h3>
+                        <p class="text-sm text-neutral-400 mt-1">Growth and grounding. Re-establishing connection with raw truth.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Brand Philosophy Banner -->
+            <div class="mt-8 p-6 bg-gradient-to-r from-amber-950/40 via-scroll-900 to-amber-950/40 border border-amber-500/30 rounded-xl text-center space-y-4">
+                <h3 class="font-cinzel text-xl font-bold text-amber-300">MR. LOSTMAN STORY</h3>
+                <p class="font-cinzel italic text-amber-100 text-base max-w-xl mx-auto">
+                    “A story about losing yourself, finding yourself, and becoming someone greater.”
+                </p>
+                <div class="pt-2 text-xs font-mono text-amber-400/80 tracking-widest uppercase">
+                    YOU ARE NOT LOST FOREVER &bull; YOU ARE SIMPLY STILL BECOMING
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="py-8 text-center text-xs font-cinzel text-amber-500/60 border-t border-amber-500/20 bg-scroll-950">
+        LOSTMAN DOCUMENTATION ARCHIVE &bull; THE FOUND MAN EDITION &bull; ALL RIGHTS RESERVED
+    </footer>
+
+    <script>
+        const storyData = [
+            {
+                chapterNum: "PROLOGUE",
+                title: "BEFORE HE WAS LOST",
+                text: [
+                    "Before there was Lostman, there was simply a boy.",
+                    "He was born beneath an ordinary sky, but he never felt ordinary. From childhood, he looked at the world differently. While everyone else seemed to know where they were going, he couldn't understand why.",
+                    "People told him:",
+                    "“Become this.”<br>“Believe this.”<br>“Follow them.”<br>“Be successful.”",
+                    "So he tried. He followed the paths placed in front of him. But every path took him farther away from himself. And slowly, something began to disappear. His sense of identity."
+                ]
+            },
+            {
+                chapterNum: "CHAPTER I",
+                title: "THE FIRST LOSS",
+                text: [
+                    "Lostman grew older. He gained friends. He gained dreams. He gained expectations. But he also gained something else: the fear of becoming nobody.",
+                    "He began comparing himself to everyone around him. Someone was richer. Someone was smarter. Someone was more beautiful. Someone was more successful. Someone seemed to have already discovered their purpose.",
+                    "Lostman began asking himself: “Who am I supposed to be?”",
+                    "He searched for the answer in people. Then money. Then knowledge. Then recognition. Then love. Nothing worked. Every time he thought he had found himself, the feeling disappeared.",
+                    "Until one night, he looked into a mirror... and couldn't recognize the person looking back. That was the moment he became Lostman. Not because he had physically become lost. Because he had become lost inside himself."
+                ]
+            },
+            {
+                chapterNum: "CHAPTER II",
+                title: "THE PLANET ABOVE HIM",
+                text: [
+                    "One night, Lostman walked alone. He eventually reached a place far away from everyone. There was no noise. No expectations. No opinions. Only the sky.",
+                    "And above him he saw something impossible. A strange ringed planet. But it wasn't really a planet. It was a reflection of himself.",
+                    "The planet represented the person Lostman could have become. The rings represented all the things surrounding him:",
+                    "Fear. Ambition. Love. Failure. Society. Dreams. Memory. Time. Everything that had shaped him.",
+                    "Lostman stared at it. And for the first time he understood:<br><br><span class='text-amber-300 italic'>“Maybe I wasn't meant to find myself in the world.”</span>"
+                ]
+            },
+            {
+                chapterNum: "CHAPTER III",
+                title: "THE JOURNEY",
+                text: [
+                    "Lostman began searching. But this time he wasn't searching for money. He wasn't searching for fame. He wasn't searching for approval. He was searching for meaning.",
+                    "He travelled through places that seemed almost impossible. He crossed cities. Deserts. Forests. Mountains. And eventually places that existed only inside his mind. Every place taught him something.",
+                    "Failure taught him humility. Loneliness taught him independence. Love taught him vulnerability. Betrayal taught him discernment. Poverty taught him resourcefulness. Success taught him that achievement alone cannot give a person meaning.",
+                    "And every time Lostman learned something... another piece of the old Lostman disappeared."
+                ]
+            },
+            {
+                chapterNum: "CHAPTER IV",
+                title: "THE MAN WITHOUT A FACE",
+                text: [
+                    "This is where the figure in your logo becomes important. Look at him. He has no visible face.",
+                    "That isn't because he has no identity. It is because he has stopped allowing the world to define his identity. His face represents the question:",
+                    "<span class='text-amber-300 italic'>“Who am I?”</span> And the absence of the face represents the period when he doesn't know.",
+                    "His body is also beginning to break apart. The gold and black fragments represent his old identity collapsing. The person he thought he had to be is dying. But something new is forming underneath."
+                ]
+            },
+            {
+                chapterNum: "CHAPTER V",
+                title: "THE RING",
+                text: [
+                    "The ring surrounding his head becomes the central symbol of Lostman. It represents the world inside his mind. Everything revolves around him. But Lostman is no longer trying to control it. He simply stands beneath it.",
+                    "He has learned something profound: You don't have to understand everything to keep moving.",
+                    "The ring therefore becomes the symbol of the Lostman brand. It has no obvious beginning. It has no obvious end. It simply continues. Just like life."
+                ]
+            },
+            {
+                chapterNum: "CHAPTER VI",
+                title: "THE SECOND PLANET",
+                text: [
+                    "Then Lostman discovers something terrifying. The planet he had been looking at wasn't above him. It was actually inside him.",
+                    "The entire universe he had been searching for was connected to his own consciousness. He had spent years looking outward for an answer that could only be discovered inward.",
+                    "And he finally understands: Being lost wasn't his punishment. It was his transformation."
+                ]
+            },
+            {
+                chapterNum: "CHAPTER VII",
+                title: "THE LOWEST POINT",
+                text: [
+                    "But discovering the truth doesn't immediately make everything better. Lostman still falls. He loses things. He makes mistakes. People leave. Plans fail. There are nights when he wonders whether the journey was worth it.",
+                    "Eventually he reaches the lowest point of his life. There is nothing left to chase. Nothing left to prove. No one left to impress. He sits alone. And finally says:",
+                    "<span class='text-amber-300 italic'>“I don't know where I'm going.”</span>",
+                    "Then he realizes something. For the first time... he is being honest with himself. And that honesty becomes the beginning of his healing."
+                ]
+            },
+            {
+                chapterNum: "CHAPTER VIII",
+                title: "LOSTMAN FINDS HIMSELF",
+                text: [
+                    "He doesn't suddenly become rich. He doesn't become famous. He doesn't magically become perfect. Instead, he does something much more important. He accepts himself.",
+                    "The broken pieces of his body begin coming together. The black represents the darkness he survived. The gold represents the lessons he gained from it. The roots extending from his body represent growth.",
+                    "Because Lostman finally understands: You cannot erase your past. You can only grow beyond it. His scars remain. But now they are part of his story."
+                ]
+            },
+            {
+                chapterNum: "CHAPTER IX",
+                title: "THE MAN WHO FOUND HIS WAY",
+                text: [
+                    "Years later, Lostman returns to the same place where his journey began. He looks toward the sky. The same ringed planet is there.",
+                    "But this time... he doesn't feel lost. He smiles. Because he finally understands what the planet was trying to teach him.",
+                    "He never needed to find a destination. He needed to discover who he was while travelling toward it. And that's when Lostman finally gives himself a new name:",
+                    "<span class='text-amber-300 font-bold'>THE FOUND MAN.</span> Not because he knows everything. But because he finally knows himself."
+                ]
+            },
+            {
+                chapterNum: "THE END",
+                title: "BUT NOT REALLY THE END",
+                text: [
+                    "Lostman walks away from the place where he began. His journey is over. But the story isn't.",
+                    "Because somewhere else, another person is beginning their own journey. Someone who feels confused. Someone who feels behind. Someone who doesn't know what they're supposed to become. Someone who feels like they've lost themselves.",
+                    "And that person sees Lostman's symbol. The ring. The faceless figure. The broken body. The gold emerging from darkness. And they understand the message:",
+                    "<span class='text-amber-400 font-bold block text-center mt-4 text-lg'>YOU ARE NOT LOST FOREVER.<br>You are simply still becoming.</span>"
+                ]
+            }
+        ];
+
+        function renderStory() {
+            const container = document.getElementById('story-chapters-container');
+            const navContainer = document.getElementById('chapter-nav-buttons');
+            container.innerHTML = '';
+            navContainer.innerHTML = '';
+
+            storyData.forEach((ch, index) => {
+                // Create navigation button
+                const navBtn = document.createElement('button');
+                navBtn.className = "px-3 py-1 rounded bg-scroll-900 hover:bg-scroll-700 text-xs font-cinzel text-amber-200 border border-amber-500/20 whitespace-nowrap transition";
+                navBtn.innerText = `${ch.chapterNum}`;
+                navBtn.onclick = () => {
+                    document.getElementById(`chapter-${index}`).scrollIntoView({ behavior: 'smooth' });
+                };
+                navContainer.appendChild(navBtn);
+
+                // Create chapter block
+                const chapterEl = document.createElement('div');
+                chapterEl.id = `chapter-${index}`;
+                chapterEl.className = "space-y-6 border-b border-amber-500/20 pb-16 last:border-0";
+                
+                let paragraphsHtml = ch.text.map(p => `<p class="text-amber-100/80 font-serif leading-relaxed text-base md:text-lg">${p}</p>`).join('');
+
+                chapterEl.innerHTML = `
+                    <div class="space-y-2">
+                        <span class="text-amber-500 font-cinzel text-xs tracking-widest font-semibold">${ch.chapterNum}</span>
+                        <h2 class="text-2xl md:text-3xl font-cinzel font-bold text-amber-200 gold-glow">${ch.title}</h2>
+                        <div class="w-16 h-0.5 bg-amber-500/40 my-3"></div>
+                    </div>
+                    <div class="space-y-4">
+                        ${paragraphsHtml}
+                    </div>
+                `;
+                container.appendChild(chapterEl);
+            });
+        }
+
+        function scrollToScroll() {
+            document.getElementById('scroll-archive').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function scrollToPhilosophy() {
+            document.getElementById('philosophy-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        window.onload = () => {
+            renderStory();
+        };
+    </script>
+</body>
+</html>
